@@ -3,123 +3,308 @@
 <head>
   <meta charset="UTF-8" />
   <title>My all World 🌎💗✨</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- هذا السطر هو المسؤول عن ضبط الأبعاد للموبايل -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
+  <!-- استدعاء خط "كايرو" ليكون الخط جميلاً -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
+    /* تهيئة الصفحة للموبايل */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; /* إزالة لون النقر الافتراضي في الموبايل */
+    }
+
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Cairo', sans-serif;
       background: linear-gradient(135deg, #dff3ff, #b6e3ff);
       color: #1e4f6f;
-    }
-    header {
-      text-align: center;
-      padding: 80px 20px;
-    }
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.3em;
-    }
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 15px;
-      transition: transform 0.4s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    .timeline-item {
-      margin-bottom: 20px;
-      padding-right: 15px;
-      border-right: 4px solid #ee9ca7;
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: rgba(255,255,255,0.6);
-      font-size: 1.1em;
-    }
-    audio {
-      width: 100%;
-      margin-top: 15px;
-    }
-  
-    /* قلوب متحركة */
-    .heart {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      background: #7ec8ff;
-      transform: rotate(45deg);
-      animation: float 8s linear infinite;
-      opacity: 0.7;
-      z-index: 0;
-    }
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #7ec8ff;
-      border-radius: 50%;
-    }
-    .heart::before { top: -6px; left: 0; }
-    .heart::after { left: -6px; top: 0; }
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(45deg); }
-      100% { transform: translateY(-10vh) rotate(45deg); }
+      overflow-x: hidden; /* لمنع الاهتزاز الأفقي */
+      padding-bottom: 60px; /* مسافة في الأسفل */
     }
 
-    /* عداد تنازلي */
+    /* تنسيق الهيدر */
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      min-height: 85vh; /* يملأ شاشة الموبايل تقريباً */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2em; /* حجم مناسب لشاشة الهاتف */
+      margin: 0 0 15px 0;
+      line-height: 1.4;
+      text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    }
+
+    header p {
+      font-size: 1.1em;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* تنسيق الحاويات (Sections) */
+    section {
+      padding: 10px 15px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 25px; /* حواف دائرية أكثر */
+      padding: 25px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(30, 79, 111, 0.08);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h2 {
+      font-size: 1.4em;
+      margin-top: 0;
+      border-bottom: 3px dotted #ee9ca7;
+      padding-bottom: 8px;
+      display: inline-block;
+      color: #0b3c5d;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1em;
+      color: #335d7a;
+    }
+
+    /* العداد التنازلي */
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-      font-size: 1.2em;
+      gap: 8px;
+      margin-top: 30px;
+      flex-wrap: wrap;
     }
+
     .time {
-      background: rgba(255,255,255,0.7);
-      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px 5px;
       border-radius: 15px;
-      min-width: 70px;
+      width: 65px; /* عرض ثابت صغير */
       text-align: center;
+      font-size: 0.85em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    
+    .time span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ee9ca7;
+      display: block;
+    }
+
+    /* معرض الصور (Grid) - صورتين بجانب بعض */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1; /* مربع تماماً */
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.2s;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .gallery img:active {
+      transform: scale(0.95); /* تأثير عند اللمس */
+    }
+
+    /* الذكريات (Timeline) */
+    .timeline-item {
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 15px;
+      border-right: 5px solid #ee9ca7;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .timeline-title {
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timeline-title::after {
+      content: '▼';
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    .timeline-image-container img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none; /* مخفي */
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* الفيديوهات */
+    .video-container {
+      display: flex;
+      flex-direction: column; /* فيديوهات تحت بعض للموبايل */
+      gap: 15px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 15px;
+      background: #000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* الصوت */
+    audio {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 50px;
+    }
+
+    /* شاشة البداية (Overlay) */
+    #overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #e6f6ff, #bfe6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.6s ease;
+    }
+
+    #startBtn {
+      background: #fff;
+      color: #1e4f6f;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(30, 79, 111, 0.15);
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* القلوب الخلفية */
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: #ff8fa3;
+      transform: rotate(45deg);
+      opacity: 0.5;
+      z-index: -1;
+      animation: floatUp 10s linear infinite;
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .heart::before { top: -7.5px; left: 0; }
+    .heart::after { left: -7.5px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* عارض الصور (Lightbox) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+    #lightbox img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+    #lightbox-close {
+      position: absolute;
+      bottom: 50px;
+      color: white;
+      font-size: 1.5em;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 30px;
+      border-radius: 30px;
+      pointer-events: none; /* مجرد نص توضيحي */
+    }
+
+    /* الفوتر */
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      opacity: 0.8;
+      padding-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <div id="overlay" style="position:fixed;inset:0;background:linear-gradient(135deg,#e6f6ff,#bfe6ff);display:flex;align-items:center;justify-content:center;z-index:5;">
-    <button id="startBtn" style="background:#7ec8ff;color:#0b3c5d;border:none;padding:18px 26px;border-radius:18px;font-size:1.2em;box-shadow:0 10px 30px rgba(0,0,0,.15);cursor:pointer;">👈🏻👉🏻🙈click here boooo</button>
+
+  <!-- واجهة البداية -->
+  <div id="overlay">
+    <div style="font-size: 4em; margin-bottom: 20px;">💌</div>
+    <button id="startBtn">Click Here My Love ❤️</button>
+    <p style="margin-top: 15px; font-size: 0.9em; color: #555;">(Please turn on sound 🎧)</p>
   </div>
 
   <header>
-    <h1> ❤️🙈new year with you tota</h1>
-    <p>✨And if you die, I wanna die with you <<3✨</p>
+    <h1>❤️🙈 New year with you Tota</h1>
+    <p>✨ And if you die, I wanna die with you <3 ✨</p>
+    
     <div class="countdown" id="countdown">
-      <div class="time"><span id="seconds">0</span><br>Second</div>
-      <div class="time"><span id="minutes">0</span><br>Minute</div>
-      <div class="time"><span id="hours">0</span><br>Hour</div>
-      <div class="time"><span id="days">0</span><br>Day</div>
+      <div class="time"><span id="seconds">0</span>s</div>
+      <div class="time"><span id="minutes">0</span>m</div>
+      <div class="time"><span id="hours">0</span>h</div>
+      <div class="time"><span id="days">0</span>d</div>
       
       
       
@@ -127,230 +312,194 @@
   </header>
 
   <section>
+    <!-- الرسالة -->
     <div class="card">
-      <h2>💌🤏🏻 massage for you memo</h2>
+      <h2>💌 Message for you</h2>
       <p>
-       تسنيممم 🙈👈🏻👉🏻❤️
-بما انها اول سنه ندخلها مع بعض 🥺💗💗💗
-كل سنه و احنا مع بعض و بنحب بعض 🥺💗🌕
-و تفضلي دايما جنبي و معايا و يخليكي ليا🥹🫂❤️ 
-و دي بجد احلي بدايه سنه ليا 
-علشان معاكي🥹🙈💗 
-و احلي حاجه طلعت بيها مش هقولك من 2025
-احلي حاجه طلعت بيها من عمري كله اللي قضيته و كل سنيني اللي فاتت و احلي حاجه حصلت لي 
-هي انتي 🥺🤏🏻 💗✨
-انا بجد بحبك اوي و ربنا يخليكي ليا 🥺💗
-يا احلي حلم انا حلمت بيه و احلي ما حصل لي و حبي و عشقي 🥺❤️
-ربنا يخليكي ليا يا روحه قلبي و حبيبتي و تسنومتي 🥹🤏🏻💗💗 
-سنه جديده معاكي 🥹💗💗💗
-اوعي تبعدي عني خالص 🥺💔
-عايزك دايما جنبي و معايا 🥺
-ما اقدرش ابقي من غيرك و ما اقدرش اكمل غير بيكي 🥺
-لسه فاكر يوم 14/3/2025 🥺
-يوم لما قلبي كان طاير علشان اعترفت لك 🥹👈🏻👉🏻💗 
-كنت مبسوط اوي 🥹
-بحبك و كنت دايب فيكي 🥹🤏🏻🌕 
-كنتي حاجه ما احلمش بيها 🥹
-بس اعععععععععععععع 🥹
-انتي بتحبيني ؟🥹
-اناااا ؟؟؟! 🥹
-يا لهوي 🥹
-هعيططط 🥹
-انا بحبك اويييي بجد يا تسنيم بحبك اوي و بعشقك و بموت فيكي 🥹👈🏻👉🏻💗💗💗💗💗💗💗💗
-عايز اقولك اني فخور بيكي اوي و بكل حاجه بتعمليها حتي لو قد كده 🥺🤏🏻 
-ف هي عندي كبيره اوي و ليها معاني و مشاعر ياما 🥹🫂✨
-كل تفصيله فيكي انا بحبها و كل حاجه بتعمليها انا طاير بيها 🥹🙈💗💗💗
-لحظه إدراك اني صاحي مخنوق علشان ما جيتش و انك وحشاني اوي 🥺💔💔💔
-يا رب تكوني كويسه و مبسوطه و يفرح قلبك يا رب 🥹
-علشان انتي حلوه خالص و طيبه و تستاهلي كل حاجه حلوه 
-ربنا يقرب من يومنا و يقربنا من سوا و نتجوز علشان اعوضك عن كل اللي شوفتيه بجد 🥺
-حتي لو مني 🥺
-انتي شوفتي كتير و تعبتي و انا عايز ابقي جنبك و اعوضك 🥺
-عندي كلام كتير عايز أقوله بس مش بعرف اعبر اوي بس انتي بتفهميني صح ؟🥹👈🏻👉🏻
-بحبكك و بموت فيكي 🥹🤏🏻 
-ربنا يخليكي ليا يا عشقي 🥹💗💗💗 
-✨2026✨
-        <br><br>
+        <b>تسنيممم 🙈👈🏻👉🏻❤️</b><br><br>
+        بما انها اول سنه ندخلها مع بعض 🥺💗<br>
+        كل سنه و احنا مع بعض و بنحب بعض.. وتفضلي دايما جنبي ومعايا ويخليكي ليا 🥹🫂❤️<br>
+        دي بجد احلي بدايه سنه ليا علشان معاكي 🥹🙈💗<br>
+        احلي حاجه طلعت بيها من عمري كله هي انتي 🥺🤏🏻 💗✨<br>
+        <br>
+        انا بجد بحبك اوي و ربنا يخليكي ليا يا احلي حلم انا حلمت بيه 🥺❤️<br>
+        سنه جديده معاكي.. اوعي تبعدي عني خالص 🥺💔<br>
+        عايزك دايما جنبي.. ما اقدرش ابقي من غيرك 🥺<br>
+        <br>
+        لسه فاكر يوم <b>14/3/2025</b> 🥺 يوم اعترافي ليكي.. قلبي كان طاير 🥹👈🏻👉🏻💗<br>
+        كنت مبسوط اوي وبحبك ودايب فيكي 🥹🤏🏻🌕<br>
+        لما عرفت انك بتحبيني.. انا ؟! يا لهوي هعيط 🥹<br>
+        <br>
+        بحبك اويييي بجد يا تسنيم وبعشقك 🥹💗💗💗<br>
+        فخور بيكي وبكل تفصيله فيكي 🥺🤏🏻<br>
+        لحظه إدراك اني صاحي مخنوق علشان ما جيتش وانك وحشاني اوي 🥺💔<br>
+        ربنا يقربنا من سوا ونتجوز واعوضك عن كل حاجه 🥺<br>
+        عندي كلام كتير بس انتي بتفهميني صح ؟🥹👈🏻👉🏻<br>
+        <br>
+        <b>✨ 2026 ✨</b><br>
         كل سنة وإنتي أقرب حد لقلبي 🌎💗✨
       </p>
     </div>
 
-<div class="card">
-  <h2>🥺💗 Some memories</h2>
-  <div class="gallery">
-    <img src="photo1.jpg" alt="memory 1" onclick="openImage(this.src)">
-    <img src="photo2.jpg" alt="memory 2" onclick="openImage(this.src)">
-    <img src="photo3.jpg" alt="memory 3" onclick="openImage(this.src)">
-    <img src="photo4.jpg" alt="memory 4" onclick="openImage(this.src)">
-    <img src="photo6.jpg" alt="memory 5" onclick="openImage(this.src)">
-    <img src="photo7.jpg" alt="memory 6" onclick="openImage(this.src)">
-    <img src="photo7.jpg" alt="memory 7" onclick="openImage(this.src)">
-    <img src="photo8.jpg" alt="memory 8" onclick="openImage(this.src)">
-    <img src="photo9.jpg" alt="memory 9" onclick="openImage(this.src)">
-    <img src="photo10.jpg" alt="memory 10" onclick="openImage(this.src)">
-  </div>
-</div>
-
-<!-- نافذة عرض الصور -->
-<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10;">
-  <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:15px;">
-</div>
-
-<script>
-function openImage(src){
-  const lightbox = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = src;
-  lightbox.style.display = 'flex';
-}
-
-// اغلاق النافذة عند الضغط عليها
-document.getElementById('lightbox').addEventListener('click', function(){
-  this.style.display = 'none';
-});
-</script>
-
-<style>
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-  justify-items: center;
-}
-
-.gallery img {
-  width: 150px;
-  height: 100px;
-  border-radius: 12px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.gallery img:hover {
-  transform: scale(1.1);
-}
-</style>
-
-
-
+    <!-- الصور -->
     <div class="card">
-  <h2>🕰️ Our journey together</h2>
+      <h2>🥺💗 Memories</h2>
+      <div class="gallery">
+        <!-- يتم استبدال الصور تلقائياً إذا لم توجد -->
+        <img src="photo1.jpg" onerror="this.src='https://placehold.co/400x400/FFC0CB/ffffff?text=Love'" onclick="openLightbox(this.src)">
+        <img src="photo2.jpg" onerror="this.src='https://placehold.co/400x400/87CEEB/ffffff?text=You'" onclick="openLightbox(this.src)">
+        <img src="photo3.jpg" onerror="this.src='https://placehold.co/400x400/E6E6FA/ffffff?text=Us'" onclick="openLightbox(this.src)">
+        <img src="photo4.jpg" onerror="this.src='https://placehold.co/400x400/FFB6C1/ffffff?text=Cute'" onclick="openLightbox(this.src)">
+        <img src="photo5.jpg" onerror="this.src='https://placehold.co/400x400/ADD8E6/ffffff?text=Heart'" onclick="openLightbox(this.src)">
+        <img src="photo6.jpg" onerror="this.src='https://placehold.co/400x400/F0E68C/ffffff?text=Moon'" onclick="openLightbox(this.src)">
+      </div>
+    </div>
 
-<div class="timeline-item">
-  <span onclick="toggleImage('img1')" style="cursor:pointer;">اول مره اعترف ✨14/3/2025✨</span>
-  <img id="img1" src="pic1.jpg" alt="أول مرة اتكلمنا" style="width:300px;border-radius:12px;margin-top:10px;display:none;">
-</div>
-
-<div class="timeline-item">
-  <span onclick="toggleImage('img2')" style="cursor:pointer;">أول خروجة سوا 💖</span>
-  <img id="img2" src="photo1.jpg" alt="أول خروجة سوا" style="width:300px;border-radius:12px;margin-top:10px;display:none;">
-</div>
-
-<div class="timeline-item">
-  <span onclick="toggleImage('img3')" style="cursor:pointer;">أجمل يوم قضيناه مع بعض 22/11/2025🌍</span>
-  <img id="img3" src="pic2.jpg" alt="أجمل يوم قضيناه مع بعض" style="width:300px;border-radius:12px;margin-top:10px;display:none;">
-</div>
-
-<div class="timeline-item">
-  <span onclick="toggleImage('img4')" style="cursor:pointer;">السنة الجديدة اللي بنبدأها سوا 🎉</span>
-  <img id="img4" src="pic4.jpg" alt="السنة الجديدة اللي بنبدأها سوا" style="width:300px;border-radius:12px;margin-top:10px;display:none;">
-</div>
-
-<script>
-function toggleImage(id){
-  const img = document.getElementById(id);
-  if(img.style.display === 'none'){
-    img.style.display = 'block';
-  } else {
-    img.style.display = 'none';
-  }
-}
-</script>
-<div class="card">
-  <h2>ترندات عملناها سوا 🙈💖</h2>
-  <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-    <!-- الفيديو الأول -->
-    <video controls style="width:300px; height:169px; border-radius:15px;">
-      <source src="tr1.mp4" type="video/mp4">
-    </video>
-
-    <!-- الفيديو الثاني -->
-    <video controls style="width:300px; height:169px; border-radius:15px;">
-      <source src="tr2.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-<div class="card">
-  <h2>فيديو ذكرى مميزة 🎥</h2>
-  <video controls style="width:600px; height:337px; border-radius:15px; display:block; margin:auto;">
-    <source src="vid1.mp4" type="video/mp4">
-    متصفحك لا يدعم تشغيل الفيديو.
-  </video>
-</div>
-
+    <!-- الرحلة -->
     <div class="card">
-      <h2>أغنيتنا 🥺🎶</h2>
-      <audio id="bgm" controls>
+      <h2>🕰️ Our Journey</h2>
+      
+      <div class="timeline-item">
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+          14/3/2025 (اعتراف) ✨
+        </div>
+        <div class="timeline-image-container">
+          <img src="pic1.jpg" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+          أول خروجة سوا 💖
+        </div>
+        <div class="timeline-image-container">
+          <img src="photo1.jpg" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+          22/11/2025 (أجمل يوم) 🌍
+        </div>
+        <div class="timeline-image-container">
+          <img src="pic2.jpg" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <!-- الفيديوهات -->
+    <div class="card">
+      <h2>🎥 Videos & Trends</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="tr1.mp4" type="video/mp4">
+        </video>
+        <video controls>
+          <source src="vid1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- الموسيقى -->
+    <div class="card">
+      <h2>🎶 Our Song</h2>
+      <audio id="bgm" controls loop>
         <source src="song.mp3" type="audio/mpeg">
-    
+        Your browser does not support the audio element.
       </audio>
     </div>
   </section>
 
- <footer style="text-align:center; font-size:1.2em; line-height:1.6;">
-  <div>❤️ أقل حاجه ممكن اعملها لك يا أحلى حاجه في حياتي ❤️</div>
-  <div>💗 I love you tota <<3</div>
-</footer>
+  <footer>
+    ❤️ I love you Tota ❤️<br>
+    Since 2025 - Forever
+  </footer>
 
+  <!-- عارض الصور الكبير -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="">
+    <div id="lightbox-close">اضغطي للإغلاق</div>
+  </div>
 
-  <!-- قلوب -->
   <script>
-    for (let i = 0; i < 25; i++) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-      document.body.appendChild(heart);
+    // --- منطق عارض الصور ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
     }
 
-    // عداد السنة الجديدة
-    const target = new Date(new Date().getFullYear() + 1, 0, 1);
-    const d = id => document.getElementById(id);
-    setInterval(() => {
-      const now = new Date();
-      const diff = target - now;
-      if (diff <= 0) return;
-      d('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-      d('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      d('minutes').innerText = Math.floor((diff / (1000 * 60)) % 60);
-      d('seconds').innerText = Math.floor((diff / 1000) % 60);
-    }, 1000);
-  </script>
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
 
-  <script>
-    // بدء التجربة + تشغيل الأغنية
+    // --- منطق التايم لاين (إظهار/إخفاء) ---
+    function toggleTimeline(element) {
+      const img = element.nextElementSibling.querySelector('img');
+      if (img) {
+        if (img.style.display === 'block') {
+          img.style.display = 'none';
+          element.style.color = 'inherit';
+        } else {
+          img.style.display = 'block';
+          element.style.color = '#ee9ca7';
+        }
+      }
+    }
+
+    // --- القلوب المتحركة ---
+    function createHearts() {
+      const container = document.body;
+      for (let i = 0; i < 15; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.animationDuration = (6 + Math.random() * 6) + 's';
+        h.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(h);
+      }
+    }
+    createHearts();
+
+    // --- العداد التنازلي (بداية 2026) ---
+    const targetDate = new Date("Jan 1, 2026 00:00:00").getTime();
+    
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+
+    // --- زر البداية ---
     const startBtn = document.getElementById('startBtn');
     const overlay = document.getElementById('overlay');
     const bgm = document.getElementById('bgm');
-    startBtn.addEventListener('click', () => {
-      overlay.style.opacity = 0;
-      setTimeout(()=> overlay.remove(), 600);
-      bgm.volume = 0.6;
-      bgm.play().catch(()=>{});
-    });
 
-    // رسالة مفاجأة بعد ثواني
-    setTimeout(()=>{
-      const note = document.createElement('div');
-      note.style.position='fixed';note.style.bottom='20px';note.style.left='50%';note.style.transform='translateX(-50%)';
-      note.style.background='rgba(255,255,255,.85)';note.style.padding='14px 20px';note.style.borderRadius='16px';
-      note.style.boxShadow='0 10px 30px rgba(0,0,0,.12)';note.style.color='#1e4f6f';note.style.zIndex=4;
-      note.innerText='كل سنه و انتي احلي حاجه في دنيتي يا تسنيم بحبك 🌑👈🏻👉🏻💕';
-      document.body.appendChild(note);
-      setTimeout(()=> note.remove(), 6000);
-    }, 4000);
+    startBtn.addEventListener('click', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 600);
+      
+      // تشغيل الموسيقى
+      bgm.volume = 0.5;
+      bgm.play().catch(e => console.log("Audio play failed:", e));
+
+      // رسالة منبثقة (Toast)
+      setTimeout(() => {
+        const toast = document.createElement('div');
+        toast.innerHTML = "كل سنة وانتي طيبة يا روحي ❤️";
+        toast.style.cssText = "position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:white; padding:15px 25px; border-radius:50px; box-shadow:0 5px 20px rgba(0,0,0,0.2); z-index:999; font-weight:bold; color:#ee9ca7; width: max-content;";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+      }, 2000);
+    });
   </script>
 </body>
 </html>
