@@ -3,133 +3,315 @@
 <head>
   <meta charset="UTF-8" />
   <title>My all World 🌎💗✨</title>
+  <!-- هذا السطر هو المسؤول عن ضبط الأبعاد للموبايل -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   
+  <!-- استدعاء خط "كايرو" ليكون الخط جميلاً -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* تنسيقات الصفحة الأساسية */
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* تهيئة الصفحة للموبايل */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; /* إزالة لون النقر الافتراضي في الموبايل */
+    }
 
     body {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       font-family: 'Cairo', sans-serif;
       background: linear-gradient(135deg, #dff3ff, #b6e3ff);
       color: #1e4f6f;
-      overflow-x: hidden;
-      padding-bottom: 60px;
+      overflow-x: hidden; /* لمنع الاهتزاز الأفقي */
+      padding-bottom: 60px; /* مسافة في الأسفل */
     }
 
+    /* تنسيق الهيدر */
     header {
       text-align: center;
       padding: 50px 20px;
-      min-height: 85vh;
+      min-height: 85vh; /* يملأ شاشة الموبايل تقريباً */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-    header h1 { font-size: 2em; margin: 0 0 15px 0; line-height: 1.4; text-shadow: 2px 2px 0px rgba(255,255,255,0.5); }
-    header p { font-size: 1.1em; margin: 0; opacity: 0.9; }
+    header h1 {
+      font-size: 2em; /* حجم مناسب لشاشة الهاتف */
+      margin: 0 0 15px 0;
+      line-height: 1.4;
+      text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    }
 
-    section { padding: 10px 15px; width: 100%; }
+    header p {
+      font-size: 1.1em;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* تنسيق الحاويات (Sections) */
+    section {
+      padding: 10px 15px;
+      width: 100%;
+    }
 
     .card {
       background: rgba(255, 255, 255, 0.92);
-      border-radius: 25px;
+      border-radius: 25px; /* حواف دائرية أكثر */
       padding: 25px 20px;
       margin-bottom: 25px;
       box-shadow: 0 10px 25px rgba(30, 79, 111, 0.08);
       width: 100%;
       position: relative;
+      overflow: hidden;
     }
 
-    h2 { font-size: 1.4em; margin-top: 0; border-bottom: 3px dotted #ee9ca7; padding-bottom: 8px; display: inline-block; color: #0b3c5d; }
-    p { line-height: 1.8; font-size: 1em; color: #335d7a; }
+    h2 {
+      font-size: 1.4em;
+      margin-top: 0;
+      border-bottom: 3px dotted #ee9ca7;
+      padding-bottom: 8px;
+      display: inline-block;
+      color: #0b3c5d;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1em;
+      color: #335d7a;
+    }
 
     /* العداد التنازلي */
-    .countdown { display: flex; justify-content: center; gap: 8px; margin-top: 30px; flex-wrap: wrap; }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
     .time {
       background: rgba(255, 255, 255, 0.7);
       padding: 10px 5px;
       border-radius: 15px;
-      width: 65px;
+      width: 65px; /* عرض ثابت صغير */
       text-align: center;
       font-size: 0.85em;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       border: 1px solid rgba(255,255,255,0.8);
     }
-    .time span { font-size: 1.5em; font-weight: bold; color: #ee9ca7; display: block; }
-
-    /* معرض الصور */
-    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .gallery img {
-      width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
-      border-radius: 15px; transition: transform 0.2s;
-      background-color: #f0f0f0; cursor: pointer;
+    
+    .time span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ee9ca7;
+      display: block;
     }
-    .gallery img:active { transform: scale(0.95); }
 
-    /* الرحلة (Timeline) */
-    .timeline-item { padding: 15px; margin-bottom: 15px; background: #fff; border-radius: 15px; border-right: 5px solid #ee9ca7; box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
-    .timeline-title { font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    .timeline-content { display: none; padding-top: 10px; animation: fadeIn 0.5s; }
-    .confession-box { font-style: italic; color: #555; background: #fff5f6; padding: 10px; border-radius: 10px; }
+    /* معرض الصور (Grid) - صورتين بجانب بعض */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1; /* مربع تماماً */
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.2s;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .gallery img:active {
+      transform: scale(0.95); /* تأثير عند اللمس */
+    }
+
+    /* الذكريات (Timeline) */
+    .timeline-item {
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 15px;
+      border-right: 5px solid #ee9ca7;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .timeline-title {
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timeline-title::after {
+      content: '▼';
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    .timeline-image-container img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none; /* مخفي */
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* الفيديوهات */
-    .video-container { display: flex; flex-direction: column; gap: 15px; }
-    video { width: 100%; border-radius: 15px; background: #000; }
-    audio { width: 100%; margin-top: 10px; }
+    .video-container {
+      display: flex;
+      flex-direction: column; /* فيديوهات تحت بعض للموبايل */
+      gap: 15px;
+    }
 
-    /* شاشة البداية */
+    video {
+      width: 100%;
+      border-radius: 15px;
+      background: #000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* الصوت */
+    audio {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 50px;
+    }
+
+    /* شاشة البداية (Overlay) */
     #overlay {
-      position: fixed; inset: 0; background: linear-gradient(135deg, #e6f6ff, #bfe6ff);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 1000; transition: opacity 0.6s ease;
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #e6f6ff, #bfe6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.6s ease;
     }
-    #startBtn {
-      background: #fff; color: #1e4f6f; border: none; padding: 18px 40px;
-      border-radius: 50px; font-size: 1.2em; font-weight: bold;
-      box-shadow: 0 10px 30px rgba(30, 79, 111, 0.15);
-      cursor: pointer; animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    /* القلوب */
-    .heart { position: fixed; width: 15px; height: 15px; background: #ff8fa3; transform: rotate(45deg); opacity: 0.5; z-index: -1; animation: floatUp 10s linear infinite; }
-    .heart::before, .heart::after { content: ''; position: absolute; width: 15px; height: 15px; background: inherit; border-radius: 50%; }
+    #startBtn {
+      background: #fff;
+      color: #1e4f6f;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(30, 79, 111, 0.15);
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* القلوب الخلفية */
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: #ff8fa3;
+      transform: rotate(45deg);
+      opacity: 0.5;
+      z-index: -1;
+      animation: floatUp 10s linear infinite;
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: inherit;
+      border-radius: 50%;
+    }
     .heart::before { top: -7.5px; left: 0; }
     .heart::after { left: -7.5px; top: 0; }
-    @keyframes floatUp { 0% { transform: translateY(110vh) rotate(45deg); opacity: 0; } 100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; } }
 
-    /* Lightbox */
-    #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; }
-    #lightbox img { max-width: 90%; max-height: 80vh; border-radius: 10px; }
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* عارض الصور (Lightbox) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+    #lightbox img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+    #lightbox-close {
+      position: absolute;
+      bottom: 50px;
+      color: white;
+      font-size: 1.5em;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 30px;
+      border-radius: 30px;
+      pointer-events: none; /* مجرد نص توضيحي */
+    }
+
+    /* الفوتر */
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9em;
+      opacity: 0.8;
+      padding-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- واجهة البداية -->
   <div id="overlay">
     <div style="font-size: 4em; margin-bottom: 20px;">💌</div>
-    <button id="startBtn">💗 Click Here Tota</button>
+    <button id="startBtn">💗🥺 Click Here Tota</button>
     <p style="margin-top: 15px; font-size: 0.9em; color: #555;">(Please turn on sound 🎧)</p>
   </div>
 
   <header>
     <h1>New year with you Tota 🥹💗</h1>
     <p>✨ And if you die, I wanna die with you <3 ✨</p>
-    <div class="countdown">
-      <div class="time"><span id="days">0</span>d</div>
-      <div class="time"><span id="hours">0</span>h</div>
-      <div class="time"><span id="minutes">0</span>m</div>
+    
+    <div class="countdown" id="countdown">
       <div class="time"><span id="seconds">0</span>s</div>
+      <div class="time"><span id="minutes">0</span>m</div>
+      <div class="time"><span id="hours">0</span>h</div>
+      <div class="time"><span id="days">0</span>d</div>
+      
+      
+      
     </div>
   </header>
 
-  <section>
+ <section>
     <div class="card">
       <h2>💌 Message for you</h2>
       <p>
@@ -138,85 +320,253 @@
         كل سنه و احنا مع بعض و بنحب بعض 🥺💗🌕<br>
         و تفضلي دايما جنبي و معايا و يخليكي ليا 🥹🫂♥️<br>
         و دي بجد احلي بدايه سنه ليا علشان معاكي 🥹🙈💗<br><br>
-        و احلي حاجه حصلت لي هي انتي 🥺🤏🏻💗✨<br><br>
-        انا بجد بحبك اوي و ربنا يخليكي ليا...<br>
-        سنه جديده سوا... <b>✨2026✨</b>
+        و احلي حاجه طلعت بيها مش هقولك من 2025.. احلي حاجه طلعت بيها من عمري كله اللي قضيته و كل سنيني اللي فاتت و احلي حاجه حصلت لي هي انتي 🥺🤏🏻💗✨<br><br>
+        انا بجد بحبك اوي و ربنا يخليكي ليا 🥺💗<br>
+        يا احلي حلم انا حلمت بيه و احلي ما حصل لي و حبي و عشقي 🥺♥️<br>
+        ربنا يخليكي ليا يا روحه قلبي و حبيبتي و تسنومتي 🥹🤏🏻💗💗<br>
+        سنه جديده معاكي 🥹💗💗💗<br>
+        اوعي تبعدي عني خالص 🥺💔<br>
+        عايزك دايما جنبي و معايا 🥺<br>
+        ما اقدرش ابقي من غيرك و ما اقدرش اكمل غير بيكي 🥺<br><br>
+        لسه فاكر يوم 14/3/2025 🥺<br>
+        يوم لما قلبي كان طاير علشان اعترفت لك 🥹👈🏻👉🏻💗<br>
+        كنت مبسوط اوي 🥹 <br>
+        بحبك و كنت دايب فيكي 🥹🤏🏻🌕<br>
+        كنتي حاجه ما احلمش بيها 🥹 <br>
+        بس اعععععععععععععع 🥹<br>
+        انتي بتحبيني ؟🥹 <br>
+        اناااا ؟؟؟! 🥹<br>
+        يا لهوي 🥹 <br>
+        هعيططط 🥹<br><br>
+        انا بحبك اويييي بجد يا تسنيم بحبك اوي و بعشقك و بموت فيكي 🥹👈🏻👉🏻💗💗💗💗💗💗💗💗<br><br>
+        عايز اقولك اني فخور بيكي اوي و بكل حاجه بتعمليها حتي لو قد كده 🥺🤏🏻 <br>
+        ف هي عندي كبيره اوي و ليها معاني و مشاعر ياما🥹🫂✨ <br>
+        كل تفصيله فيكي انا بحبها و كل حاجه بتعمليها انا طاير بيها 🥹🙈💗💗💗<br><br>
+        لحظه إدراك اني صاحي مخنوق علشان ما جيتش و انك وحشاني اوي 🥺💔💔💔<br>
+        يا رب تكوني كويسه و مبسوطه و يفرح قلبك يا رب 🥹 <br>
+        علشان انتي حلوه خالص و طيبه و تستاهلي كل حاجه حلوه.<br><br>
+        ربنا يقرب من يومنا و يقربنا من سوا و نتجوز علشان اعوضك عن كل اللي شوفتيه بجد 🥺 <br>
+        حتي لو مني 🥺<br>
+        انتي شوفتي كتير و تعبتي و انا عايز ابقي جنبك و اعوضك 🥺<br><br>
+        عندي كلام كتير عايز أقوله بس مش بعرف اعبر اوي بس انتي بتفهميني صح ؟🥹👈🏻👉🏻<br><br>
+        
+        بحبكك و بموت فيكي 🥹🤏🏻<br>
+        ربنا يخليكي ليا يا عشقي 🥹💗💗💗<br>
+        بجد بعشقك 🥺<br><br>
+        اوعدك اني عمري ما هبعد عنك ماهما حصل بينا عمري ما هتخلي عنك 🥺<br>
+        مش عايزك تخافي تاني 🥺💔<br> 
+        عايزك كويسه عايزك مبسوطه 🥺<br>
+        ده انتي كل حاجه ليا بنتي و مامتي و صاحبتي و اختي و حبيبتي و اهلي و الدنيا كلها 🥺🤏🏻🫂<br><br>
+        بحبك يا اميرتي 🥺🌍👑 <br>
+        ربنا يخليكي ليا يا رب 🥹🤲🏻💗<br>
+        بعشقك يا تسنيم 🥹🤏🏻🌕💗<br>
+        ربنا يخلينا ل بعض 🥹💗<br><br>
+        سنه جديده سوا...<br>
+        <b>✨2026✨</b>
       </p>
     </div>
 
+    <!-- الصور -->
     <div class="card">
-      <h2>💗 Memories</h2>
+      <h2>💗🥺 Memories</h2>
       <div class="gallery">
+        <!-- يتم استبدال الصور تلقائياً إذا لم توجد -->
         <img src="photo1.jpg" onerror="this.src='https://placehold.co/400x400/FFC0CB/ffffff?text=Love'" onclick="openLightbox(this.src)">
         <img src="photo2.jpg" onerror="this.src='https://placehold.co/400x400/87CEEB/ffffff?text=You'" onclick="openLightbox(this.src)">
+        <img src="photo3.jpg" onerror="this.src='https://placehold.co/400x400/E6E6FA/ffffff?text=Us'" onclick="openLightbox(this.src)">
+        <img src="photo4.jpg" onerror="this.src='https://placehold.co/400x400/FFB6C1/ffffff?text=Cute'" onclick="openLightbox(this.src)">
+        <img src="photo5.jpg" onerror="this.src='https://placehold.co/400x400/ADD8E6/ffffff?text=Heart'" onclick="openLightbox(this.src)">
+        <img src="photo6.jpg" onerror="this.src='https://placehold.co/400x400/F0E68C/ffffff?text=Moon'" onclick="openLightbox(this.src)">
       </div>
     </div>
 
+    <!-- الرحلة -->
     <div class="card">
       <h2>🕰️ Our Journey</h2>
+      
       <div class="timeline-item">
-        <div class="timeline-title" onclick="toggleTimeline(this)">✨ 14/3/2025 (الاعتراف) ▼</div>
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+         ✨ 14/3/2025 (الاعتراف) ✨
+        </div>
         <div class="timeline-content">
-          <div class="confession-box">تسنيممم بصراحه أنا بحبك بجد.. 🙈♥️</div>
+          <div class="confession-box">
+           تسنيممم بصراحه بصي أنا بحبك ب امانه والله و بجد ما تعرفيش قد ايه بحبك واني مش عايز اقولها أصلا لأنها قليله عليكي و بجد والله ما تعرفي قد ايه ببقي واقع لما بشوفك تمام و سلام بقي علشان أنا رايح اصلي لاني هموت من الكسوف و دوخت 🙈♥️♥️♥️
+          </div>
+
+      <div class="timeline-item">
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+          أول خروجة سوا 💖
+        </div>
+        <div class="timeline-image-container">
+          <img src="photo1.jpg" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-title" onclick="toggleTimeline(this)">
+          22/11/2025 (أجمل يوم) 🌍
+        </div>
+        <div class="timeline-image-container">
+          <img src="pic2.jpg" onerror="this.parentElement.style.display='none'">
         </div>
       </div>
     </div>
 
+    <!-- الفيديوهات -->
     <div class="card">
-      <h2>🎶 Our Song</h2>
+      <h2>🎥 Videos & Trends</h2>
+      <div class="video-container">
+        <video controls>
+          <source src="tr1.mp4" type="video/mp4">
+        </video>
+        <video controls>
+          <source src="tr2.mp4" type="video/mp4">
+        </video>
+        <video controls>
+          <source src="vid1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- الموسيقى -->
+    <div class="card">
+      <h2>🎶🥹 Our Song</h2>
       <audio id="bgm" controls loop>
         <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
       </audio>
     </div>
   </section>
 
-  <div id="lightbox" onclick="this.style.display='none'">
+  <footer>
+    ❤️ I love you Tota ❤️<br>
+    Since 2025 - Forever
+  </footer>
+
+  <!-- عارض الصور الكبير -->
+  <div id="lightbox" onclick="closeLightbox()">
     <img id="lightbox-img" src="">
+    <div id="lightbox-close"></div>
   </div>
 
   <script>
-    // 1. العداد
-    const startDate = new Date("March 14, 2025 00:00:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = now - startDate;
-      document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-    }, 1000);
+    // --- منطق عارض الصور ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-    // 2. زر البداية
-    document.getElementById('startBtn').addEventListener('click', function() {
-      document.getElementById('overlay').style.opacity = '0';
-      setTimeout(() => document.getElementById('overlay').remove(), 600);
-      const audio = document.getElementById('bgm');
-      audio.play().catch(() => console.log("Audio blocked by browser"));
-    });
-
-    // 3. التحكم في التايم لاين
-    function toggleTimeline(el) {
-      const content = el.nextElementSibling;
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // 4. عرض الصور
     function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
     }
 
-    // 5. إنشاء القلوب
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    // --- منطق التايم لاين (إظهار/إخفاء) ---
+    function toggleTimeline(element) {
+      const img = element.nextElementSibling.querySelector('img');
+      if (img) {
+        if (img.style.display === 'block') {
+          img.style.display = 'none';
+          element.style.color = 'inherit';
+        } else {
+          img.style.display = 'block';
+          element.style.color = '#ee9ca7';
+        }
+      }
+    }
+
+    // --- القلوب المتحركة ---
     function createHearts() {
+      const container = document.body;
       for (let i = 0; i < 15; i++) {
         const h = document.createElement('div');
         h.className = 'heart';
         h.style.left = Math.random() * 100 + 'vw';
         h.style.animationDuration = (6 + Math.random() * 6) + 's';
-        document.body.appendChild(h);
+        h.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(h);
       }
     }
     createHearts();
-  </script>
-</body>
-</html>
+
+    // --- العداد التنازلي (بداية 2026) ---
+  <script>
+  // ===== عداد الأيام =====
+  const startDate = new Date("Mar 14, 2025 00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = now - startDate;
+
+    if (diff >= 0) {
+      document.getElementById('days').innerText =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById('hours').innerText =
+        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      document.getElementById('minutes').innerText =
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById('seconds').innerText =
+        Math.floor((diff % (1000 * 60)) / 1000);
+    }
+  }, 1000);
+
+
+  // ===== زر البداية =====
+  document.addEventListener("DOMContentLoaded", () => {
+    const startBtn = document.getElementById('startBtn');
+    const overlay = document.getElementById('overlay');
+    const bgm = document.getElementById('bgm');
+
+    startBtn.addEventListener('click', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 600);
+
+      // تشغيل الموسيقى
+      bgm.volume = 0.5;
+      bgm.play().catch(e => console.log("Audio play failed:", e));
+
+      // Toast
+      setTimeout(() => {
+        const toast = document.createElement('div');
+        toast.innerHTML = "كل سنة واحنا مع بعض يا تسنيم 🥹💗✨";
+        toast.style.cssText = `
+          position:fixed;
+          bottom:20px;
+          left:50%;
+          transform:translateX(-50%);
+          background:white;
+          padding:15px 25px;
+          border-radius:50px;
+          box-shadow:0 5px 20px rgba(0,0,0,0.2);
+          z-index:999;
+          font-weight:bold;
+          color:#ee9ca7;
+          width:max-content;
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+      }, 2000);
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
