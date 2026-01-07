@@ -492,19 +492,29 @@
     createHearts();
 
     // --- العداد التنازلي (بداية 2026) ---
-    const targetDate = new Date("Jan 1, 2026 00:00:00").getTime();
-    
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+  <script>
+  const startDate = new Date("Mar 14, 2025 00:00:00").getTime();
 
-      if (diff > 0) {
-        document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-      }
-    }, 1000);
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = now - startDate;
+
+    if (diff >= 0) {
+      document.getElementById('days').innerText =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById('hours').innerText =
+        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      document.getElementById('minutes').innerText =
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById('seconds').innerText =
+        Math.floor((diff % (1000 * 60)) / 1000);
+    }
+  }, 1000);
+</script>
+
 
     // --- زر البداية ---
     const startBtn = document.getElementById('startBtn');
@@ -531,6 +541,7 @@
   </script>
 </body>
 </html>
+
 
 
 
