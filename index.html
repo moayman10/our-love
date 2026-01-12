@@ -186,18 +186,13 @@
     }
 
     /* الفيديوهات */
-    .video-container {
-      display: flex;
-      flex-direction: column; /* فيديوهات تحت بعض للموبايل */
-      gap: 15px;
-    }
+ .timeline-content video,
+.video-container video {
+  width: 100%;
+  border-radius: 15px;
+  display: block; /* مهم جداً */
+}
 
-    video {
-      width: 100%;
-      border-radius: 15px;
-      background: #000;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
 
     /* الصوت */
     audio {
@@ -511,30 +506,21 @@ function toggleTimeline(element) {
   const content = element.nextElementSibling;
   if (!content) return;
 
-  const images = content.querySelectorAll('img');
-  const videos = content.querySelectorAll('video');
-
   if (content.classList.contains('show')) {
+    // اغلاق
     content.classList.remove('show');
     element.classList.remove('active');
     element.style.color = 'inherit';
-
-    images.forEach(img => img.style.opacity = 0);
-    videos.forEach(v => v.style.opacity = 0);
+    content.style.maxHeight = null;
   } else {
+    // فتح
     content.classList.add('show');
     element.classList.add('active');
     element.style.color = '#ee9ca7';
-
-    // اجعل المحتوى مرن للطول
     content.style.maxHeight = content.scrollHeight + 'px';
-
-    setTimeout(() => {
-      images.forEach(img => img.style.opacity = 1);
-      videos.forEach(v => v.style.opacity = 1);
-    }, 200);
   }
 }
+
 
 
 
@@ -616,6 +602,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
