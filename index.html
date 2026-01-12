@@ -159,27 +159,26 @@
   transform: rotate(-180deg);
 }
 
-.timeline-image-container img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
-  opacity: 0; /* تبدأ مخفية */
-  transition: opacity 0.5s ease;
-}
-
-
-/* اخفاء كل محتوى الرحلة من البداية */
 .timeline-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
+  transition: max-height 0.5s ease;
   opacity: 0;
 }
 
 .timeline-content.show {
-  max-height: 1000px; /* قيمة كبيرة تكفي لكل المحتوى */
+  max-height: 2000px; /* قيمة كبيرة تكفي لكل المحتوى */
   opacity: 1;
 }
+
+.timeline-image-container img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  opacity: 0; /* يبدأ مخفي */
+  transition: opacity 0.5s ease;
+}
+
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
@@ -512,22 +511,27 @@ function toggleTimeline(element) {
   const content = element.nextElementSibling;
   if (!content) return;
 
-  const images = content.querySelectorAll('img'); // كل الصور جوا المحتوى
+  const images = content.querySelectorAll('img'); // كل الصور
+  const videos = content.querySelectorAll('video'); // الفيديوهات لو عايز تأثير
 
   if (content.classList.contains('show')) {
     content.classList.remove('show');
     element.classList.remove('active');
     element.style.color = 'inherit';
 
-    // اخفاء الصور
+    // اخفاء الصور والفيديوهات
     images.forEach(img => img.style.opacity = 0);
+    videos.forEach(v => v.style.opacity = 0);
   } else {
     content.classList.add('show');
     element.classList.add('active');
     element.style.color = '#ee9ca7';
 
-    // اظهار الصور بعد قليل (تأخير بسيط)
-    images.forEach(img => setTimeout(() => img.style.opacity = 1, 100));
+    // بعد انتهاء transition للـ max-height
+    setTimeout(() => {
+      images.forEach(img => img.style.opacity = 1);
+      videos.forEach(v => v.style.opacity = 1);
+    }, 200); // 200ms تأخير مناسب
   }
 }
 
@@ -610,6 +614,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
