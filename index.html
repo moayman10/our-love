@@ -563,35 +563,6 @@ function toggleTimeline(element) {
     }
   }, 1000);
 
-// جلب كل الفيديوهات
-const allVideos = document.querySelectorAll('video');
-const bgm = document.getElementById('bgm');
-
-// function للتحكم في الأغنية
-function handleVideoPlay(video) {
-  // لما الفيديو يبدأ، وقف الأغنية
-  video.addEventListener('play', () => {
-    if (!bgm.paused) {
-      bgm.pause();
-    }
-  });
-
-  // لما الفيديو يتوقف أو يخلص، شغل الأغنية تاني
-  video.addEventListener('pause', () => {
-    if (bgm.paused) {
-      bgm.play().catch(e => console.log("Audio play failed:", e));
-    }
-  });
-
-  video.addEventListener('ended', () => {
-    if (bgm.paused) {
-      bgm.play().catch(e => console.log("Audio play failed:", e));
-    }
-  });
-}
-
-// تطبيق على كل الفيديوهات
-allVideos.forEach(video => handleVideoPlay(video));
 
   // ===== زر البداية =====
   document.addEventListener("DOMContentLoaded", () => {
