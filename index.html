@@ -163,10 +163,10 @@
   width: 100%;
   border-radius: 10px;
   margin-top: 10px;
-  display: block; /* خلي الصور موجودة لكن نتحكم فيها بالانزلاق */
   opacity: 0; /* تبدأ مخفية */
   transition: opacity 0.5s ease;
 }
+
 
 /* اخفاء كل محتوى الرحلة من البداية */
 .timeline-content {
@@ -512,16 +512,25 @@ function toggleTimeline(element) {
   const content = element.nextElementSibling;
   if (!content) return;
 
+  const images = content.querySelectorAll('img'); // كل الصور جوا المحتوى
+
   if (content.classList.contains('show')) {
     content.classList.remove('show');
     element.classList.remove('active');
     element.style.color = 'inherit';
+
+    // اخفاء الصور
+    images.forEach(img => img.style.opacity = 0);
   } else {
     content.classList.add('show');
     element.classList.add('active');
     element.style.color = '#ee9ca7';
+
+    // اظهار الصور بعد قليل (تأخير بسيط)
+    images.forEach(img => setTimeout(() => img.style.opacity = 1, 100));
   }
 }
+
 
 
 
@@ -601,6 +610,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
