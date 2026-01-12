@@ -161,6 +161,10 @@
       display: none; /* مخفي */
       animation: fadeIn 0.5s;
     }
+/* اخفاء كل محتوى الرحلة من البداية */
+.timeline-content {
+  display: none; /* كل النصوص، الصور، والفيديوهات مخفية */
+}
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
@@ -490,21 +494,21 @@
       lightbox.style.display = 'none';
     }
 
-    // --- منطق التايم لاين (إظهار/إخفاء) ---
 function toggleTimeline(element) {
-  const content = element.nextElementSibling;
+  const content = element.nextElementSibling; // العنصر اللي بعد العنوان
   if (!content) return;
 
   if (content.style.display === "block") {
-    content.style.display = "none";
+    content.style.display = "none"; // اخفاء المحتوى لو كان ظاهر
     element.classList.remove('active');
     element.style.color = 'inherit';
   } else {
-    content.style.display = "block";
+    content.style.display = "block"; // اظهار المحتوى لو مخفي
     element.classList.add('active');
     element.style.color = '#ee9ca7';
   }
 }
+
 
 
     // --- القلوب المتحركة ---
@@ -583,5 +587,6 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
