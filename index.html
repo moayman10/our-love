@@ -511,15 +511,14 @@ function toggleTimeline(element) {
   const content = element.nextElementSibling;
   if (!content) return;
 
-  const images = content.querySelectorAll('img'); // كل الصور
-  const videos = content.querySelectorAll('video'); // الفيديوهات لو عايز تأثير
+  const images = content.querySelectorAll('img');
+  const videos = content.querySelectorAll('video');
 
   if (content.classList.contains('show')) {
     content.classList.remove('show');
     element.classList.remove('active');
     element.style.color = 'inherit';
 
-    // اخفاء الصور والفيديوهات
     images.forEach(img => img.style.opacity = 0);
     videos.forEach(v => v.style.opacity = 0);
   } else {
@@ -527,13 +526,16 @@ function toggleTimeline(element) {
     element.classList.add('active');
     element.style.color = '#ee9ca7';
 
-    // بعد انتهاء transition للـ max-height
+    // اجعل المحتوى مرن للطول
+    content.style.maxHeight = content.scrollHeight + 'px';
+
     setTimeout(() => {
       images.forEach(img => img.style.opacity = 1);
       videos.forEach(v => v.style.opacity = 1);
-    }, 200); // 200ms تأخير مناسب
+    }, 200);
   }
 }
+
 
 
 
@@ -614,6 +616,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
