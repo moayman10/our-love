@@ -393,42 +393,51 @@
     </div>
 
     <!-- الرحلة -->
-    <div class="card">
-      <h2>🕰️ Our Journey</h2>
-      
-      <div class="timeline-item">
-        <div class="timeline-title" onclick="toggleTimeline(this)">
-         ✨ 14/3/2025 (الاعتراف) ✨
-        </div>
-        <div class="timeline-content">
-          <div class="confession-box">
-           تسنيممم بصراحه بصي أنا بحبك ب امانه والله و بجد ما تعرفيش قد ايه بحبك واني مش عايز اقولها أصلا لأنها قليله عليكي و بجد والله ما تعرفي قد ايه ببقي واقع لما بشوفك تمام و سلام بقي علشان أنا رايح اصلي لاني هموت من الكسوف و دوخت 🙈♥️♥️♥️
-          </div>
+<div class="card">
+  <h2>🕰️ Our Journey</h2>
 
-      <div class="timeline-item">
-        <div class="timeline-title" onclick="toggleTimeline(this)">
-          أول خروجة سوا 💖
-        </div>
-        <div class="timeline-image-container">
-          <img src="photo1.jpg" onerror="this.parentElement.style.display='none'">
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-title" onclick="toggleTimeline(this)">
-          22/11/2025 (أجمل يوم) 🌍
-        </div>
-        <div class="timeline-image-container">
-          <img src="pic2.jpg" onerror="this.parentElement.style.display='none'">
-        </div>
-         <video controls>
-          <source src="vid.mp4" type="video/mp4">
-        </video>
-         <video controls>
-          <source src="vid3.mp4" type="video/mp4">
-        </video>
+  <div class="timeline-item">
+    <div class="timeline-title" onclick="toggleTimeline(this)">
+      ✨ 14/3/2025 (الاعتراف) ✨
+    </div>
+    <div class="timeline-content">
+      <div class="confession-box">
+        تسنيممم بصراحه بصي أنا بحبك ب امانه والله و بجد ما تعرفيش قد ايه بحبك...
       </div>
     </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-title" onclick="toggleTimeline(this)">
+      أول خروجة سوا 💖
+    </div>
+    <div class="timeline-content">
+      <div class="timeline-image-container">
+        <img src="photo1.jpg" onerror="this.parentElement.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-title" onclick="toggleTimeline(this)">
+      22/11/2025 (أجمل يوم) 🌍
+    </div>
+    <div class="timeline-content">
+      <div class="timeline-image-container">
+        <img src="pic2.jpg" onerror="this.parentElement.style.display='none'">
+      </div>
+
+      <video controls>
+        <source src="vid.mp4" type="video/mp4">
+      </video>
+
+      <video controls>
+        <source src="vid3.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
 
     <!-- الفيديوهات -->
     <div class="card">
@@ -482,18 +491,20 @@
     }
 
     // --- منطق التايم لاين (إظهار/إخفاء) ---
-    function toggleTimeline(element) {
-      const img = element.nextElementSibling.querySelector('img');
-      if (img) {
-        if (img.style.display === 'block') {
-          img.style.display = 'none';
-          element.style.color = 'inherit';
-        } else {
-          img.style.display = 'block';
-          element.style.color = '#ee9ca7';
-        }
-      }
-    }
+function toggleTimeline(element) {
+  const content = element.nextElementSibling;
+  if (!content) return;
+
+  if (content.style.display === "block") {
+    content.style.display = "none";
+    element.classList.remove('active');
+    element.style.color = 'inherit';
+  } else {
+    content.style.display = "block";
+    element.classList.add('active');
+    element.style.color = '#ee9ca7';
+  }
+}
 
     // --- القلوب المتحركة ---
     function createHearts() {
@@ -571,6 +582,7 @@
     });
   });
 </script>
+
 
 
 
