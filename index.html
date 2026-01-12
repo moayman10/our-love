@@ -160,28 +160,30 @@
 }
 
 /* إخفاء المحتوى تماماً في البداية */
+/* إخفاء المحتوى تماماً في البداية */
 .timeline-content {
-  display: none; /* إخفاء من شجرة الصفحة */
+  display: none; /* مخفي تماماً */
   opacity: 0;
-  overflow: hidden;
-  transition: opacity 0.5s ease;
   flex-direction: column;
   align-items: center;
   padding: 15px 5px;
+  transition: opacity 0.4s ease;
 }
 
-/* حالة الظهور */
+/* حالة الظهور: عندما يأخذ الكلاس show يتحول لـ flex */
 .timeline-content.show {
-  display: flex; /* يظهر فقط عند إضافة الكلاس */
+  display: flex !important; 
   opacity: 1;
+  animation: fadeIn 0.5s ease;
 }
 
+/* تحسين شكل الصور داخل الـ Journey */
 .timeline-image-container {
   width: 100%;
+  max-width: 300px; /* حجم مناسب للموبايل */
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(238, 156, 167, 0.2);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .timeline-image-container img {
@@ -534,28 +536,30 @@
     }
 
 function toggleTimeline(element) {
+  // الحصول على المحتوى المرتبط بالضغط
   const content = element.nextElementSibling;
   
-  // 1. التحقق إذا كان العنصر مفتوحاً بالفعل
+  // التحقق إذا كان هذا العنصر هو المفتوح حالياً
   const isOpen = content.classList.contains('show');
 
-  // 2. إغلاق كل الأقسام الأخرى أولاً (اختياري، ليكون المحتوى منظماً)
+  // إغلاق كل المحتويات الأخرى أولاً
   document.querySelectorAll('.timeline-content').forEach(item => {
-    item.classList.remove('show');
+    item.classList.remove('show'); // سيختفي بسبب display: none
     item.previousElementSibling.classList.remove('active');
   });
 
-  // 3. إذا لم يكن مفتوحاً، قم بفتحه
+  // إذا لم يكن مفتوحاً.. افتحه
   if (!isOpen) {
-    content.classList.add('show');
+    content.classList.add('show'); // سيظهر بسبب display: flex
     element.classList.add('active');
     
-    // إطلاق تأثير القلوب عند الفتح
+    // إطلاق القلوب
     createHeartExplosion(element);
-  } else {
-    // إذا كان مفتوحاً وضغطت عليه ثانيةً، سيغلق
-    content.classList.remove('show');
-    element.classList.remove('active');
+    
+    // تمرير الشاشة ببطء للعنصر الذي فُتح (اختياري لراحة العين)
+    setTimeout(() => {
+      content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
   }
 }
 
@@ -654,6 +658,7 @@ function createHeartExplosion(el) {
     });
   });
 </script>
+
 
 
 
