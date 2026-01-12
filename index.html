@@ -159,25 +159,49 @@
   transform: rotate(-180deg);
 }
 
+/* تحسين حاوية الرحلة */
 .timeline-content {
-  max-height: none;
-  overflow: visible;
-  opacity: 1;
-  transition: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
 .timeline-content.show {
-  max-height: 2000px; /* قيمة كبيرة تكفي لكل المحتوى */
   opacity: 1;
+  padding: 15px 0;
+}
+
+.timeline-image-container {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(238, 156, 167, 0.3);
+  margin-bottom: 10px;
 }
 
 .timeline-image-container img {
   width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
-  opacity: 1; /* بدل 0 */
-  transition: opacity 0.5s ease;
+  display: block;
+  object-fit: cover;
+}
+
+/* تأثير القلوب الصغيرة عند الضغط */
+.floating-heart {
+  position: absolute;
+  font-size: 20px;
+  user-select: none;
+  pointer-events: none;
+  z-index: 100;
+  animation: flyUp 1.5s ease-out forwards;
+}
+
+@keyframes flyUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
 }
 
 
@@ -426,15 +450,16 @@
   </div>
 
   <div class="timeline-item">
-    <div class="timeline-title" onclick="toggleTimeline(this)">
-      أول خروجة سوا 💖
-    </div>
-    <div class="timeline-content">
-      <div class="timeline-image-container">
-        <img src="photo1.jpg" onerror="this.parentElement.style.display='none'">
-      </div>
-    </div>
+  <div class="timeline-title" onclick="toggleTimeline(this)">
+    أول خروجة سوا 💖
   </div>
+  <div class="timeline-content">
+    <div class="timeline-image-container">
+      <img src="photo1.jpg" onerror="this.src='https://placehold.co/400x600/FFC0CB/ffffff?text=Beautiful+Memory+🥹'">
+    </div>
+    <p style="text-align:center; font-size:0.9em;">كان يوم ما يتنسيش.. 🧸✨</p>
+  </div>
+</div>
 
   <div class="timeline-item">
     <div class="timeline-title" onclick="toggleTimeline(this)">
@@ -510,20 +535,42 @@
 
 function toggleTimeline(element) {
   const content = element.nextElementSibling;
-  if (!content) return;
+  const isActive = content.classList.contains('show');
 
-  if (content.classList.contains('show')) {
-    // اغلاق
-    content.classList.remove('show');
-    element.classList.remove('active');
-    element.style.color = 'inherit';
-    content.style.maxHeight = null;
-  } else {
-    // فتح
+  // إغلاق أي قسم آخر مفتوح لتركيز الانتباه
+  document.querySelectorAll('.timeline-content').forEach(item => {
+    item.classList.remove('show');
+    item.style.maxHeight = null;
+    item.previousElementSibling.classList.remove('active');
+  });
+
+  if (!isActive) {
     content.classList.add('show');
     element.classList.add('active');
-    element.style.color = '#ee9ca7';
-    content.style.maxHeight = content.scrollHeight + 'px';
+    // حساب الارتفاع بدقة لتظهر الصور
+    content.style.maxHeight = (content.scrollHeight + 100) + "px";
+    
+    // إطلاق تأثير القلوب
+    createHeartExplosion(element);
+  }
+}
+
+// دالة انفجار القلوب عند فتح الذكرى
+function createHeartExplosion(el) {
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement('span');
+    heart.innerHTML = '💗';
+    heart.className = 'floating-heart';
+    
+    // تحديد مكان القلوب حول الزر الذي تم الضغط عليه
+    const rect = el.getBoundingClientRect();
+    heart.style.left = (rect.left + Math.random() * rect.width) + 'px';
+    heart.style.top = (rect.top + window.scrollY) + 'px';
+    
+    document.body.appendChild(heart);
+    
+    // إزالة القلب من الصفحة بعد انتهاء الحركة
+    setTimeout(() => heart.remove(), 1500);
   }
 }
 
@@ -608,6 +655,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
