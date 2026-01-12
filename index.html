@@ -131,39 +131,54 @@
     }
 
     /* الذكريات (Timeline) */
-    .timeline-item {
-      padding: 15px;
-      margin-bottom: 15px;
-      background: #fff;
-      border-radius: 15px;
-      border-right: 5px solid #ee9ca7;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-    }
+   .timeline-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 15px;
+  border-right: 5px solid #ee9ca7;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+}
 
-    .timeline-title {
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.timeline-title {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .timeline-title::after {
-      content: '▼';
-      font-size: 0.8em;
-      color: #999;
-    }
+.timeline-title::after {
+  content: '▼';
+  font-size: 0.8em;
+  color: #999;
+  transition: transform 0.3s;
+}
 
-    .timeline-image-container img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-      display: none; /* مخفي */
-      animation: fadeIn 0.5s;
-    }
+.timeline-title.active::after {
+  transform: rotate(-180deg);
+}
+
+.timeline-image-container img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: block; /* خلي الصور موجودة لكن نتحكم فيها بالانزلاق */
+  opacity: 0; /* تبدأ مخفية */
+  transition: opacity 0.5s ease;
+}
+
 /* اخفاء كل محتوى الرحلة من البداية */
 .timeline-content {
-  display: none; /* كل النصوص، الصور، والفيديوهات مخفية */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.timeline-content.show {
+  max-height: 1000px; /* قيمة كبيرة تكفي لكل المحتوى */
+  opacity: 1;
 }
 
     @keyframes fadeIn {
@@ -495,15 +510,15 @@
     }
 
 function toggleTimeline(element) {
-  const content = element.nextElementSibling; // العنصر اللي بعد العنوان
+  const content = element.nextElementSibling;
   if (!content) return;
 
-  if (content.style.display === "block") {
-    content.style.display = "none"; // اخفاء المحتوى لو كان ظاهر
+  if (content.classList.contains('show')) {
+    content.classList.remove('show');
     element.classList.remove('active');
     element.style.color = 'inherit';
   } else {
-    content.style.display = "block"; // اظهار المحتوى لو مخفي
+    content.classList.add('show');
     element.classList.add('active');
     element.style.color = '#ee9ca7';
   }
@@ -587,6 +602,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
