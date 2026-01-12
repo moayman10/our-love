@@ -159,50 +159,50 @@
   transform: rotate(-180deg);
 }
 
-/* تحسين حاوية الرحلة */
+/* إخفاء المحتوى تماماً في البداية */
 .timeline-content {
-  max-height: 0;
-  overflow: hidden;
+  display: none; /* إخفاء من شجرة الصفحة */
   opacity: 0;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
   flex-direction: column;
   align-items: center;
+  padding: 15px 5px;
 }
 
+/* حالة الظهور */
 .timeline-content.show {
+  display: flex; /* يظهر فقط عند إضافة الكلاس */
   opacity: 1;
-  padding: 15px 0;
 }
 
 .timeline-image-container {
   width: 100%;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(238, 156, 167, 0.3);
-  margin-bottom: 10px;
+  box-shadow: 0 5px 15px rgba(238, 156, 167, 0.2);
+  margin-bottom: 15px;
 }
 
 .timeline-image-container img {
   width: 100%;
   display: block;
-  object-fit: cover;
 }
 
-/* تأثير القلوب الصغيرة عند الضغط */
+/* قلوب الفتح */
 .floating-heart {
   position: absolute;
   font-size: 20px;
-  user-select: none;
   pointer-events: none;
-  z-index: 100;
-  animation: flyUp 1.5s ease-out forwards;
+  z-index: 9999;
+  animation: flyUp 1.2s ease-out forwards;
 }
 
 @keyframes flyUp {
   0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+  100% { transform: translateY(-80px) scale(1.5); opacity: 0; }
 }
+
 
 
 
@@ -535,42 +535,41 @@
 
 function toggleTimeline(element) {
   const content = element.nextElementSibling;
-  const isActive = content.classList.contains('show');
+  
+  // 1. التحقق إذا كان العنصر مفتوحاً بالفعل
+  const isOpen = content.classList.contains('show');
 
-  // إغلاق أي قسم آخر مفتوح لتركيز الانتباه
+  // 2. إغلاق كل الأقسام الأخرى أولاً (اختياري، ليكون المحتوى منظماً)
   document.querySelectorAll('.timeline-content').forEach(item => {
     item.classList.remove('show');
-    item.style.maxHeight = null;
     item.previousElementSibling.classList.remove('active');
   });
 
-  if (!isActive) {
+  // 3. إذا لم يكن مفتوحاً، قم بفتحه
+  if (!isOpen) {
     content.classList.add('show');
     element.classList.add('active');
-    // حساب الارتفاع بدقة لتظهر الصور
-    content.style.maxHeight = (content.scrollHeight + 100) + "px";
     
-    // إطلاق تأثير القلوب
+    // إطلاق تأثير القلوب عند الفتح
     createHeartExplosion(element);
+  } else {
+    // إذا كان مفتوحاً وضغطت عليه ثانيةً، سيغلق
+    content.classList.remove('show');
+    element.classList.remove('active');
   }
 }
 
-// دالة انفجار القلوب عند فتح الذكرى
+// دالة انفجار القلوب
 function createHeartExplosion(el) {
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 6; i++) {
     const heart = document.createElement('span');
     heart.innerHTML = '💗';
     heart.className = 'floating-heart';
-    
-    // تحديد مكان القلوب حول الزر الذي تم الضغط عليه
     const rect = el.getBoundingClientRect();
     heart.style.left = (rect.left + Math.random() * rect.width) + 'px';
     heart.style.top = (rect.top + window.scrollY) + 'px';
-    
     document.body.appendChild(heart);
-    
-    // إزالة القلب من الصفحة بعد انتهاء الحركة
-    setTimeout(() => heart.remove(), 1500);
+    setTimeout(() => heart.remove(), 1200);
   }
 }
 
@@ -655,6 +654,7 @@ function createHeartExplosion(el) {
     });
   });
 </script>
+
 
 
 
