@@ -160,11 +160,12 @@
 }
 
 .timeline-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  opacity: 0;
+  max-height: none;
+  overflow: visible;
+  opacity: 1;
+  transition: none;
 }
+
 
 .timeline-content.show {
   max-height: 2000px; /* قيمة كبيرة تكفي لكل المحتوى */
@@ -175,9 +176,10 @@
   width: 100%;
   border-radius: 10px;
   margin-top: 10px;
-  opacity: 0; /* يبدأ مخفي */
+  opacity: 1; /* بدل 0 */
   transition: opacity 0.5s ease;
 }
+
 
 
     @keyframes fadeIn {
@@ -186,7 +188,11 @@
     }
 
     /* الفيديوهات */
- .timeline-content video,
+.timeline-content video {
+  display: block;
+  width: 100%;
+}
+
 .video-container video {
   width: 100%;
   border-radius: 15px;
@@ -602,6 +608,7 @@ function toggleTimeline(element) {
     });
   });
 </script>
+
 
 
 
