@@ -15,7 +15,20 @@
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent; /* إزالة لون النقر الافتراضي في الموبايل */
     }
+.hidden-img{
+  display:none;
+}
 
+#moreBtn{
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ee9ca7;
+  color:white;
+  font-family:'Cairo', sans-serif;
+  cursor:pointer;
+}
     body {
       margin: 0;
       padding: 0;
@@ -570,7 +583,15 @@ function toggleTimeline(element) {
     item.classList.remove('show'); // سيختفي بسبب display: none
     item.previousElementSibling.classList.remove('active');
   });
+function showMore(){
+  let hidden = document.querySelectorAll(".hidden-img");
 
+  hidden.forEach(img=>{
+    img.style.display="block";
+  });
+
+  document.getElementById("moreBtn").style.display="none";
+}
   // إذا لم يكن مفتوحاً.. افتحه
   if (!isOpen) {
     content.classList.add('show'); // سيظهر بسبب display: flex
@@ -681,6 +702,7 @@ function createHeartExplosion(el) {
     });
   });
 </script>
+
 
 
 
