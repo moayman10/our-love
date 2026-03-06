@@ -384,10 +384,7 @@
     }
   </style>
 </head>
-  <div id="lightbox" class="lightbox">
-  <span class="close" onclick="closeLightbox()">×</span>
-  <img id="lightbox-img">
-</div>
+
 <body>
 
   <!-- واجهة البداية -->
@@ -470,7 +467,7 @@
     <!-- الصور -->
     <div class="card">
       <h2>💗🥺 Memories</h2>
- <div class="gallery"onclick="openLightbox(this.src)">
+ <div class="gallery">
   <img src="photo.jpg" onclick="openLightbox(this.src)">
   <img src="photo1.jpg" onclick="openLightbox(this.src)">
   <img src="photo2.jpg" onclick="openLightbox(this.src)">
@@ -653,7 +650,33 @@ function toggleTimeline(element) {
     item.classList.remove('show'); // سيختفي بسبب display: none
     item.previousElementSibling.classList.remove('active');
   });
+let startX = 0;
 
+lightbox.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX - endX > 50){
+    nextImage();
+  }
+
+  if(endX - startX > 50){
+    prevImage();
+  }
+});
+
+function nextImage(){
+  currentIndex = (currentIndex + 1) % images.length;
+  lightboxImg.src = images[currentIndex].src;
+}
+
+function prevImage(){
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  lightboxImg.src = images[currentIndex].src;
+}
   // إذا لم يكن مفتوحاً.. افتحه
   if (!isOpen) {
     content.classList.add('show'); // سيظهر بسبب display: flex
@@ -799,6 +822,7 @@ function toggleImages(){
     });
   });
 </script>
+
 
 
 
