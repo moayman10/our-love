@@ -629,27 +629,7 @@ document.addEventListener("keydown",function(e){
   }
 
 });
-    function openLightbox(src) {
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-    }
-
-function toggleTimeline(element) {
-  // الحصول على المحتوى المرتبط بالضغط
-  const content = element.nextElementSibling;
-  
-  // التحقق إذا كان هذا العنصر هو المفتوح حالياً
-  const isOpen = content.classList.contains('show');
-
-  // إغلاق كل المحتويات الأخرى أولاً
-  document.querySelectorAll('.timeline-content').forEach(item => {
-    item.classList.remove('show'); // سيختفي بسبب display: none
-    item.previousElementSibling.classList.remove('active');
-  });
+   
 let startX = 0;
 
 lightbox.addEventListener("touchstart", e=>{
@@ -677,6 +657,19 @@ function prevImage(){
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   lightboxImg.src = images[currentIndex].src;
 }
+function toggleTimeline(element) {
+  // الحصول على المحتوى المرتبط بالضغط
+  const content = element.nextElementSibling;
+  
+  // التحقق إذا كان هذا العنصر هو المفتوح حالياً
+  const isOpen = content.classList.contains('show');
+
+  // إغلاق كل المحتويات الأخرى أولاً
+  document.querySelectorAll('.timeline-content').forEach(item => {
+    item.classList.remove('show'); // سيختفي بسبب display: none
+    item.previousElementSibling.classList.remove('active');
+  });
+
   // إذا لم يكن مفتوحاً.. افتحه
   if (!isOpen) {
     content.classList.add('show'); // سيظهر بسبب display: flex
@@ -822,6 +815,7 @@ function toggleImages(){
     });
   });
 </script>
+
 
 
 
