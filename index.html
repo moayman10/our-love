@@ -17,17 +17,31 @@
     }
 .hidden-img{
   display:none;
+  opacity:0;
+  transform:scale(0.9);
+  transition:all 0.5s ease;
 }
 
-#moreBtn{
-  margin-top:15px;
-  padding:10px 20px;
+.show{
+  display:block;
+  opacity:1;
+  transform:scale(1);
+}
+
+#toggleBtn{
+  margin-top:20px;
+  padding:12px 25px;
   border:none;
-  border-radius:20px;
-  background:#ee9ca7;
+  border-radius:25px;
+  background:#ff6b81;
   color:white;
-  font-family:'Cairo', sans-serif;
+  font-size:16px;
   cursor:pointer;
+  transition:0.3s;
+}
+
+#toggleBtn:hover{
+  transform:scale(1.1);
 }
     body {
       margin: 0;
@@ -428,50 +442,49 @@
     <div class="card">
       <h2>💗🥺 Memories</h2>
  <div class="gallery">
-  <img src="photo.jpg" onclick="openLightbox(this.src)">
-  <img src="photo1.jpg" onclick="openLightbox(this.src)">
-  <img src="photo2.jpg" onclick="openLightbox(this.src)">
-  <img src="photo3.jpg" onclick="openLightbox(this.src)">
-  <img src="pic2.jpg" onclick="openLightbox(this.src)">
-  <img src="photo5.jpg" onclick="openLightbox(this.src)">
+  <img src="photo.jpg" >
+  <img src="photo1.jpg" >
+  <img src="photo2.jpg" >
+  <img src="photo3.jpg" >
+  <img src="pic2.jpg" >
+  <img src="photo5.jpg" >
 
   <!-- الصور المخفية -->
    
-  <img class="hidden-img" src="photo4.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo6.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo7.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo8.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo9.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo10.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo11.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo12.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo13.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo14.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo15.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo16.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo17.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo18.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo19.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo20.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo21.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo22.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo23.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo24.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo25.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo26.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo27.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo28.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo29.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo30.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo31.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo32.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo33.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo34.jpg" onclick="openLightbox(this.src)">
-  <img class="hidden-img" src="photo35.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo4.jpg" >
+  <img class="hidden-img" src="photo6.jpg" >
+  <img class="hidden-img" src="photo7.jpg" >
+  <img class="hidden-img" src="photo8.jpg" >
+  <img class="hidden-img" src="photo9.jpg" >
+  <img class="hidden-img" src="photo10.jpg" >
+  <img class="hidden-img" src="photo11.jpg" >
+  <img class="hidden-img" src="photo12.jpg" >
+  <img class="hidden-img" src="photo13.jpg" >
+  <img class="hidden-img" src="photo14.jpg" >
+  <img class="hidden-img" src="photo15.jpg" >
+  <img class="hidden-img" src="photo16.jpg" >
+  <img class="hidden-img" src="photo17.jpg" >
+  <img class="hidden-img" src="photo18.jpg" >
+  <img class="hidden-img" src="photo19.jpg" >
+  <img class="hidden-img" src="photo20.jpg" >
+  <img class="hidden-img" src="photo21.jpg" >
+  <img class="hidden-img" src="photo22.jpg" >
+  <img class="hidden-img" src="photo23.jpg" >
+  <img class="hidden-img" src="photo24.jpg" >
+  <img class="hidden-img" src="photo25.jpg" >
+  <img class="hidden-img" src="photo26.jpg" >
+  <img class="hidden-img" src="photo27.jpg" >
+  <img class="hidden-img" src="photo28.jpg" >
+  <img class="hidden-img" src="photo29.jpg" >
+  <img class="hidden-img" src="photo30.jpg" >
+  <img class="hidden-img" src="photo31.jpg" >
+  <img class="hidden-img" src="photo32.jpg" >
+  <img class="hidden-img" src="photo33.jpg" >
+  <img class="hidden-img" src="photo34.jpg" >
+  <img class="hidden-img" src="photo35.jpg" >
 </div>
 
-<button id="moreBtn" onclick="showMore()">More 🥹</button>
-
+<button id="toggleBtn" onclick="toggleImages()">Show More 💗</button>
     <!-- الرحلة -->
 <div class="card">
       <h2>🕰️ Our Journey</h2>
@@ -631,14 +644,43 @@ function createHeartExplosion(el) {
       }
     }
     createHearts();
-function showMore(){
-  let hidden = document.querySelectorAll(".hidden-img");
+let expanded = false;
 
-  hidden.forEach(img=>{
-    img.style.display="block";
-  });
+function toggleImages(){
 
-  document.getElementById("moreBtn").style.display="none";
+  let images = document.querySelectorAll(".hidden-img");
+  let btn = document.getElementById("toggleBtn");
+
+  if(!expanded){
+
+    images.forEach(img=>{
+      img.style.display="block";
+
+      setTimeout(()=>{
+        img.classList.add("show");
+      },10);
+
+    });
+
+    btn.innerText="Show Less 💔";
+    expanded = true;
+
+  }else{
+
+    images.forEach(img=>{
+      img.classList.remove("show");
+
+      setTimeout(()=>{
+        img.style.display="none";
+      },400);
+
+    });
+
+    btn.innerText="Show More 💗";
+    expanded = false;
+
+  }
+
 }
     // --- العداد التنازلي (بداية 2026) ---
   // ===== عداد الأيام =====
@@ -702,6 +744,7 @@ function showMore(){
     });
   });
 </script>
+
 
 
 
