@@ -27,7 +27,32 @@
   opacity:1;
   transform:scale(1);
 }
+.lightbox{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
 
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:40px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
 #toggleBtn{
   margin-top:20px;
   padding:12px 25px;
@@ -359,6 +384,10 @@
     }
   </style>
 </head>
+  <div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img">
+</div>
 <body>
 
   <!-- واجهة البداية -->
@@ -441,47 +470,47 @@
     <!-- الصور -->
     <div class="card">
       <h2>💗🥺 Memories</h2>
- <div class="gallery">
-  <img src="photo.jpg" >
-  <img src="photo1.jpg" >
-  <img src="photo2.jpg" >
-  <img src="photo3.jpg" >
-  <img src="pic2.jpg" >
-  <img src="photo5.jpg" >
+ <div class="gallery"onclick="openLightbox(this.src)">
+  <img src="photo.jpg" onclick="openLightbox(this.src)">
+  <img src="photo1.jpg" onclick="openLightbox(this.src)">
+  <img src="photo2.jpg" onclick="openLightbox(this.src)">
+  <img src="photo3.jpg" onclick="openLightbox(this.src)">
+  <img src="pic2.jpg" onclick="openLightbox(this.src)">
+  <img src="photo5.jpg"onclick="openLightbox(this.src)" >
 
   <!-- الصور المخفية -->
    
-  <img class="hidden-img" src="photo4.jpg" >
-  <img class="hidden-img" src="photo6.jpg" >
-  <img class="hidden-img" src="photo7.jpg" >
-  <img class="hidden-img" src="photo8.jpg" >
-  <img class="hidden-img" src="photo9.jpg" >
-  <img class="hidden-img" src="photo10.jpg" >
-  <img class="hidden-img" src="photo11.jpg" >
-  <img class="hidden-img" src="photo12.jpg" >
-  <img class="hidden-img" src="photo13.jpg" >
-  <img class="hidden-img" src="photo14.jpg" >
-  <img class="hidden-img" src="photo15.jpg" >
-  <img class="hidden-img" src="photo16.jpg" >
-  <img class="hidden-img" src="photo17.jpg" >
-  <img class="hidden-img" src="photo18.jpg" >
-  <img class="hidden-img" src="photo19.jpg" >
-  <img class="hidden-img" src="photo20.jpg" >
-  <img class="hidden-img" src="photo21.jpg" >
-  <img class="hidden-img" src="photo22.jpg" >
-  <img class="hidden-img" src="photo23.jpg" >
-  <img class="hidden-img" src="photo24.jpg" >
-  <img class="hidden-img" src="photo25.jpg" >
-  <img class="hidden-img" src="photo26.jpg" >
-  <img class="hidden-img" src="photo27.jpg" >
-  <img class="hidden-img" src="photo28.jpg" >
-  <img class="hidden-img" src="photo29.jpg" >
-  <img class="hidden-img" src="photo30.jpg" >
-  <img class="hidden-img" src="photo31.jpg" >
-  <img class="hidden-img" src="photo32.jpg" >
-  <img class="hidden-img" src="photo33.jpg" >
-  <img class="hidden-img" src="photo34.jpg" >
-  <img class="hidden-img" src="photo35.jpg" >
+  <img class="hidden-img" src="photo4.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo6.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo7.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo8.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo9.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo10.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo11.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo12.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo13.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo14.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo15.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo16.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo17.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo18.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo19.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo20.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo21.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo22.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo23.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo24.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo25.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo26.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo27.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo28.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo29.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo30.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo31.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo32.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo33.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo34.jpg" onclick="openLightbox(this.src)">
+  <img class="hidden-img" src="photo35.jpg" onclick="openLightbox(this.src)">
 </div>
 
 <button id="toggleBtn" onclick="toggleImages()">Show More 💗</button>
@@ -574,7 +603,35 @@
     // --- منطق عارض الصور ---
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+let currentIndex = 0;
+let images = [];
 
+function openLightbox(src){
+
+  images = Array.from(document.querySelectorAll(".gallery img"));
+  currentIndex = images.findIndex(img => img.src.includes(src));
+
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox(){
+  document.getElementById("lightbox").style.display = "none";
+}
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key === "ArrowRight"){
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("lightbox-img").src = images[currentIndex].src;
+  }
+
+  if(e.key === "ArrowLeft"){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("lightbox-img").src = images[currentIndex].src;
+  }
+
+});
     function openLightbox(src) {
       lightboxImg.src = src;
       lightbox.style.display = 'flex';
@@ -650,16 +707,15 @@ function toggleImages(){
 
   let images = document.querySelectorAll(".hidden-img");
   let btn = document.getElementById("toggleBtn");
+  let gallery = document.querySelector(".gallery");
 
   if(!expanded){
 
     images.forEach(img=>{
       img.style.display="block";
-
       setTimeout(()=>{
         img.classList.add("show");
       },10);
-
     });
 
     btn.innerText="Show Less 💔";
@@ -673,14 +729,13 @@ function toggleImages(){
       setTimeout(()=>{
         img.style.display="none";
       },400);
-
     });
 
     btn.innerText="Show More 💗";
     expanded = false;
 
+    gallery.scrollIntoView({behavior:"smooth"});
   }
-
 }
     // --- العداد التنازلي (بداية 2026) ---
   // ===== عداد الأيام =====
