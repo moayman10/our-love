@@ -583,15 +583,7 @@ function toggleTimeline(element) {
     item.classList.remove('show'); // سيختفي بسبب display: none
     item.previousElementSibling.classList.remove('active');
   });
-function showMore(){
-  let hidden = document.querySelectorAll(".hidden-img");
 
-  hidden.forEach(img=>{
-    img.style.display="block";
-  });
-
-  document.getElementById("moreBtn").style.display="none";
-}
   // إذا لم يكن مفتوحاً.. افتحه
   if (!isOpen) {
     content.classList.add('show'); // سيظهر بسبب display: flex
@@ -639,7 +631,15 @@ function createHeartExplosion(el) {
       }
     }
     createHearts();
+function showMore(){
+  let hidden = document.querySelectorAll(".hidden-img");
 
+  hidden.forEach(img=>{
+    img.style.display="block";
+  });
+
+  document.getElementById("moreBtn").style.display="none";
+}
     // --- العداد التنازلي (بداية 2026) ---
   // ===== عداد الأيام =====
   const startDate = new Date("Mar 14, 2025 00:00:00").getTime();
@@ -702,6 +702,7 @@ function createHeartExplosion(el) {
     });
   });
 </script>
+
 
 
 
